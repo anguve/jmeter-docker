@@ -1,12 +1,10 @@
-# Usa la imagen base de JMeter
+
 FROM justb4/jmeter:latest
 
-# Define el directorio de trabajo
 WORKDIR /jmeter
 
-# Copia los archivos de pruebas JMeter al contenedor
 COPY ./test-plans /jmeter/test-plans
 COPY ./jmeter.conf /jmeter/jmeter.conf
 
-# Comando por defecto para ejecutar JMeter
+
 ENTRYPOINT ["jmeter"]
