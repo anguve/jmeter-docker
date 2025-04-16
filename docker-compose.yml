@@ -1,0 +1,22 @@
+services:
+  jmeter:
+    build:
+      context: .
+      dockerfile: .docker/Dockerfile.prod
+    container_name: jmeter_test
+    volumes:
+      - ./test-plans:/jmeter/test-plans
+      - ./results:/jmeter/results
+
+    environment:
+      - JMETER_THREADS=${JMETER_THREADS}
+      - JMETER_DURATION=${JMETER_DURATION}
+      - JMETER_RAMP_UP=${JMETER_RAMP_UP}
+    command:
+      [
+        '-n',
+        '-t',
+        '/jmeter/test-plans/test.jmx',
+        '-l',
+        '/jmeter/results/results.jtl'
+      ]
